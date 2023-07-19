@@ -23,19 +23,10 @@ type Video = {
   video: string
 }
 
-export const getServerSideProps: GetServerSideProps<{
-  video: Video
-}> = async () => {
-  const res = await fetch('http://localhost:3000/api/video')
-  const video = await res.json()
-  return { props: { video } }
-}
 
-const Index = ({
-  video,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  console.log(video);
-  
+const Index = () => {
+
+
   const router = useRouter()
   const x = useMotionValue(0);
   const { scrollY } = useScroll();
@@ -45,9 +36,6 @@ const Index = ({
   const [isOpen, setIsOpen] = useState(false);
   const [textColor, setTextColor] = useState("text-[#F9F6EE]");
 
-  useEffect(() => {
-    setVideo(<ReactPlayer url={video.video} style={{objectFit: 'cover', position: 'absolute'}} controls={false} playing={true} loop={true}/>)
-  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest >= 1000) setTextColor("text-black duration-500");
@@ -63,9 +51,8 @@ const Index = ({
       <div className="w-full h-[500vh]">
         <div className="absolute top-0 left-0 w-[100%] h-[100%] bg-black bg-opacity-20 z-0 "></div>
         <video
-          src={require(`../public/video${
-            Math.floor(Math.random() * 3) + 1
-          }.mp4`)}
+          src={require(`../public/video${Math.floor(Math.random() * 3) + 1
+            }.mp4`)}
           // src={require(video.video)}
           autoPlay
           loop
@@ -76,7 +63,7 @@ const Index = ({
         {videos}
         </div> */}
         <motion.div
-          className={`xl:pt-10 xl:pl-10 md:pt-8 md:pl-8 pt-3 pl-3 top-0 z-20 sticky ${textColor}`}
+          className={`xl:pt-10 xl:pl-10 md:pt-8 md:pl-8 pt-3 pl-3 top-0 z-20 relative md:sticky xl:sticky ${textColor}`}
           style={{ x }}
           id="title"
         >
@@ -113,7 +100,7 @@ const Index = ({
         {isOpen ? (
           <>
             <div
-              className="top-0 right-0 mt-10 lg:p-10 xl:p-10 xl:mr-10 lg:mr-10 z-20 absolute hover:cursor-pointer"
+              className="absolute top-0 right-0 z-20 mt-10 lg:p-10 xl:p-10 xl:mr-10 lg:mr-10 hover:cursor-pointer"
               onClick={(e) => {
                 e.preventDefault();
                 setIsOpen(false);
@@ -133,7 +120,7 @@ const Index = ({
                 <path d="m6 6 12 12" />
               </svg>
             </div>
-            <div className="top-0 absolute z-20 text-white pt-10 pl-10">
+            <div className="absolute top-0 z-20 pt-10 pl-10 text-white">
               <h1
                 className={`xl:text-9xl text-7xl md:text-9xl ml-1 xl:ml-0 md:xl-0 ${fontTitle.className}`}
               >
@@ -165,7 +152,7 @@ const Index = ({
           </>
         ) : (
           <div
-            className="top-0 right-0 lg:p-10 xl:p-10 xl:mr-10 lg:mr-10 z-20 absolute hover:cursor-pointer"
+            className="absolute top-0 right-0 z-20 lg:p-10 xl:p-10 xl:mr-10 lg:mr-10 hover:cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
               setIsOpen(true);
@@ -194,7 +181,7 @@ const Index = ({
         {isOpen && (
           <div className="absolute top-0 left-0 w-[100%] h-[100%] bg-black bg-opacity-70 z-0"></div>
         )}
-        <div className={`top-[101vh] absolute ${font.className}`} >
+        <div className={`top-[101vh] absolute grid grid-rows-2 grid-flow-col gap-2${font.className}`} >
           <div className="flex flex-col justify-center items-center p-10 mt-[10%] gap-10 w-full " id="aboutUs">
             <Image
               src={"/kopi1.jpeg"}
@@ -202,11 +189,12 @@ const Index = ({
               width={600}
               height={600}
               quality={100}
-              className="outline shadow-lg flex items-center justify-center"
+              className="flex items-center justify-center shadow-lg outline"
             />
-            <br />
-            <h1 className="text-6xl mb-10 text-center font-bold underline">About Us</h1>
-            <p className="text-justify text-lg xl:mx-[15%] lg:mx-[15%] mx-[5%]">
+          </div>
+          <div>
+            <h1 className={`mb-10 text-6xl font-bold text-center underline ${font.className}`}>About Us</h1>
+            <p className={`text-justify text-lg xl:mx-[15%] lg:mx-[15%] mx-[5%] ${font.className}`}>
               Gayo Permata Coffee is growing well in Permata sub-district, Bener
               Meriah Regency, Aceh Province. Permata is frequently called as
               wilayah selimut kabut (foggy place) because the place is located
