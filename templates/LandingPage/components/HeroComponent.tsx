@@ -49,7 +49,7 @@ const HeroComponents = () => {
                             KKN
                         </h1>
                         <h1
-                            className={`xl:text-2xl text-sm md:text-xl pl-2 md:pl-3 ${font.className}`}
+                            className={`xl:text-2xl text-xl md:text-xl pl-2 md:pl-3 ${font.className}`}
                         >
                             Kopi Kaya Nusantara
                         </h1>
