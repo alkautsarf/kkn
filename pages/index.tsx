@@ -15,7 +15,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+// import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 
 
 const fontTitle = Space_Grotesk({ weight: "400", subsets: ["latin"] });
@@ -25,13 +25,13 @@ type Video = {
   video: string
 }
 
-export const getServerSideProps: GetServerSideProps<{
-  video: Video
-}> = async () => {
-  const res = await fetch('http://localhost:3000/api/video')
-  const video = await res.json()
-  return { props: { video } }
-}
+// export const getServerSideProps: GetServerSideProps<{
+//   video: Video
+// }> = async () => {
+//   const res = await fetch('http://localhost:3000/api/video')
+//   const video = await res.json()
+//   return { props: { video } }
+// }
 
 function useParallax(value: MotionValue<number>, distance: number) {
   return useTransform(value, [0, 1], [-distance, distance]);
@@ -121,10 +121,12 @@ function Kopi({ id, content }: Props) {
   );
 }
 
-const Index = ({
-  video,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  console.log(video);
+const Index = (
+//   {
+//   video,
+// }: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
+  // console.log(video);
 
   const ref = useRef(null);
   const { scrollYProgress, scrollXProgress } = useScroll({ target: ref });
