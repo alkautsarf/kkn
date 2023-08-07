@@ -16,7 +16,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
-import ReactPlayer from "react-player";
+
 
 const fontTitle = Space_Grotesk({ weight: "400", subsets: ["latin"] });
 const font = Space_Grotesk({ weight: "300", subsets: ["latin"] });
@@ -98,7 +98,7 @@ function Kopi({ id, content }: Props) {
               className="outline shadow-xl flex items-center justify-center object-contain"
             />
         </div>
-    </section> : <section className={`snap-center flex justify-center items-center gap-10 h-screen mr-[5%] ${id === 1 ? 'ml-[15%]' : 'ml-[10%]'}`}>
+    </section> : <section className={`snap-center flex justify-center items-center gap-10 h-screen mr-[5%] ${id === 1 ? 'ml-[20%]' : 'ml-[10%]'}`}>
         <div>
         <Image
               ref={ref}
@@ -144,12 +144,12 @@ const Index = ({
   const [isOpen, setIsOpen] = useState(false);
   const [textColor, setTextColor] = useState("text-[#F9F6EE]");
 
-  useEffect(() => {
-    setVideo(<ReactPlayer url={video.video} style={{objectFit: 'cover', position: 'absolute'}} controls={false} playing={true} loop={true}/>)
-  }, []);
+  // useEffect(() => {
+  //   setVideo(<ReactPlayer url={video.video} style={{objectFit: 'cover', position: 'absolute'}} controls={false} playing={true} loop={true}/>)
+  // }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest >= 1000) setTextColor("text-black duration-500");
+    if (latest >= 900) setTextColor("text-black duration-500");
     else setTextColor("text-[#F9F6EE]");
   });
 
