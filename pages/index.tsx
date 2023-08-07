@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import { Space_Grotesk } from "next/font/google";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
   useMotionValue,
@@ -140,13 +140,8 @@ const Index = ({
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 2010], [0, 2010]);
 
-  const [videos, setVideo] = useState<any>(null)
   const [isOpen, setIsOpen] = useState(false);
   const [textColor, setTextColor] = useState("text-[#F9F6EE]");
-
-  // useEffect(() => {
-  //   setVideo(<ReactPlayer url={video.video} style={{objectFit: 'cover', position: 'absolute'}} controls={false} playing={true} loop={true}/>)
-  // }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest >= 900) setTextColor("text-black duration-500");
