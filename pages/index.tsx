@@ -289,7 +289,7 @@ const Index = (
         <div className={`top-[101vh] absolute ${font.className}`} >
           <div className="flex flex-col justify-center items-center p-10 mt-[5%] gap-10 w-full" id="aboutUs">
             {contents.map((content, idx) => (
-        <Kopi id={idx + 1} content={content} />
+        <Kopi id={idx + 1} content={content} key={idx} />
       ))}
           </div>
         </div>
